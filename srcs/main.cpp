@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2015/11/06 23:18:04 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/09 18:27:22 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.hpp"
+#include <iostream>
+#include <curses.h>
+#include <unistd.h>
+#include <ctime>
+#include <signal.h>
+#include "Screen.hpp"
+#include "Character.hpp"
+#include "Enemy.hpp"
+#include "Squad.hpp"
 
-static void		print_data(int row, int col)
+static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
 {
 	int 		i;
 
@@ -36,93 +44,151 @@ static void		print_data(int row, int col)
 	// Display the score just above the end of the screen in the middle of COLS
 	move(LINES-1, (COLS/2)-5);
 	attron(COLOR_PAIR(3));
-	printw("Health = 100");
+	printw("Health = %d", hp);
 	move(LINES-1, COLS-10);
 	attron(COLOR_PAIR(2));
 	printw("Score = 0");
 	attroff(A_BOLD);
 	attroff(COLOR_PAIR(2));
+	// Display frames
+	move(0, 0);
+	attron(COLOR_PAIR(4));
+	printw("Frame %d", frame_count);
+	attroff(COLOR_PAIR(4));
+	// Display remaining milliseconds
+	move(0, 20);
+	attron(COLOR_PAIR(4));
+	printw("Remaining Useconds: %d", loop_remaining_time);
+	attroff(COLOR_PAIR(4));
 }
 
-static void		game_loop(Character car, int ch)
+static void		print_gameover()
+{
+	move((LINES/2) - 1, (COLS/2) - 5);
+	attron(COLOR_PAIR(1));
+	attron(A_BOLD);
+	printw("GAME OVER");
+	attroff(A_BOLD);
+	attroff(COLOR_PAIR(1));
+
+	move((LINES/2) + 1, (COLS/2) - 8);
+	attron(COLOR_PAIR(1));
+	attron(A_BOLD);
+	printw("Press Q to Quit");
+	attroff(A_BOLD);
+	attroff(COLOR_PAIR(1));
+}
+
+int	 clockToMilliseconds(clock_t ticks){
+    return (ticks * 1000)/CLOCKS_PER_SEC;
+}
+
+int	 clockToUseconds(clock_t ticks){
+    return (ticks * 1000000)/CLOCKS_PER_SEC;
+}
+
+static void		game_loop(Character & player, int ch)
 {
 	// Setting the symbol and position of the character
-	char 		player = car.getSymbol();
-	int 		row = car.getRow();
-	int 		col = car.getCol();
+	int & 		row = player.refRow();
+	int & 		col = player.refCol();
+	bool		alive = true;
+	clock_t		loop_start_time = 0;
+	int			loop_remaining_time = 0;
+	int			frame_count = 0;
 	// Check if player want to quit the game
 	if (ch == 'q' || ch == 'Q')
 		return ;
 	// Show the main character on the screen
- 	mvaddch(row, col, player);
- 	refresh();
+ 	player.draw();
+ 	// Enemy Example
+ 	Squad squad;
+ 	for (int i=0;i<1600;i++) {
+	 	squad.push(new Enemy('@', 2 + (i / 100), 5 + (i % 100), 1, 1));
+	}
+ 	squad.draw();
  	// Main loop
  	while (42)
  	{
- 		print_data(row, col);
+ 		frame_count++;
+ 		loop_remaining_time = 40000 - clockToUseconds(clock() - loop_start_time);
+ 		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
+ 		loop_start_time = clock();
  		ch = getch();
- 		if (ch == KEY_LEFT)
- 		{
- 			erase();
- 			col = col - 2;
-			if (col < 0)
-				col = 0;
-			if (col > COLS-1)
-				col = COLS-1;
- 			mvaddch(row, col, player);
- 			refresh();
+ 		clear();
+ 		print_data(row, col, player.getHP(), frame_count, loop_remaining_time);
+ 		if (alive) {
+	 		if (ch == KEY_LEFT) {			// KEY_LEFT
+	 			col = col - 2;
+				if (col < 0)
+					col = 0;
+				if (col > COLS-1)
+					col = COLS-1;
+	 		} else if (ch == KEY_RIGHT) {	// KEY_RIGHT
+	 			col = col + 2;
+				if (col < 0)
+					col = 0;
+				if (col > COLS-1)
+					col = COLS-1;
+	 		} else if (ch == KEY_UP) {		// KEY_UP
+	 			row = row - 1;
+				if (row < 0)
+					row = 0;
+				if (row > LINES-3)
+					row = LINES-3;
+	 		} else if (ch == KEY_DOWN) {	// KEY_DOWN
+	 			row = row + 1;
+				if (row < 0)
+					row = 0;
+				if (row > LINES-3)
+					row = LINES-3;
+			}
  		}
- 		else if (ch == KEY_RIGHT)
- 		{
- 			erase();
- 			col = col + 2;
-			if (col < 0)
-				col = 0;
-			if (col > COLS-1)
-				col = COLS-1;
- 			mvaddch(row, col, player);
- 			refresh();
+ 		if (ch == 'q' || ch == 'Q') {
+ 			break;
  		}
- 		else if (ch == KEY_UP)
- 		{
- 			erase();
- 			row = row - 1;
-			if (row < 0)
-				row = 0;
-			if (row > LINES-3)
-				row = LINES-3;
- 			mvaddch(row, col, player);
- 			refresh();
+ 		squad.collisions(&player);
+ 		squad.draw();
+ 		if (player.getHP() > 0) {
+ 			player.draw();
+ 		} else {
+ 			alive = false;
+ 			row = -1;
+ 			col = -1;
+ 			print_gameover();
  		}
- 		else if (ch == KEY_DOWN)
- 		{
- 			erase();
- 			row = row + 1;
-			if (row < 0)
-				row = 0;
-			if (row > LINES-3)
-				row = LINES-3;
- 			mvaddch(row, col, player);
- 			refresh();
- 		}
- 		else if (ch == 'q' || ch == 'Q')
- 			break ;
  	}
 }
 
-int				main()
+void resizeHandler(int sig)
+{
+	(void)sig;
+	endwin();
+	std::cerr << "Screen Size was changed..." << std::endl;
+	exit(1);
+}
+
+int				main( void )
 {
  	// Start ncurses
  	Screen 		scr;
+ 	// Handle Screen Size
+ 	if (LINES != Screen::Height || COLS != Screen::Width) {
+		Screen::badSize();
+		while (LINES != Screen::Height || COLS != Screen::Width) {
+			Screen::badSize();
+		}
+	  	return (0);
+	}
+ 	signal(SIGWINCH, &resizeHandler);
  	// Creating character
- 	Character 	car = Character('@', LINES/2, COLS/2);
- 	// Setting the screen dimensions
- 	scr.setWidth(LINES);
- 	scr.setHeight(COLS);
+ 	Character	car((LINES + 1)/2, (COLS + 1)/2);
  	// Display an intro message
 	scr.hello();
  	// Wait until the user press a key
- 	int ch = getch();
+  	nodelay(stdscr, FALSE);
+  	int ch = getch();
+  	nodelay(stdscr, TRUE);
  	// Clear the screen before game loop
  	clear();
 

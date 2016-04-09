@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/09 13:11:03 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 17:40:42 by tgauvrit         ###   ########.fr       */
+/*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
+/*   Updated: 2016/04/09 17:46:29 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
+#ifndef ENEMY_H
+# define ENEMY_H
 
 # include "Entity.hpp"
+# include "Character.hpp"
 
-class Character : public Entity {
+class Enemy : public Entity {
 
 public:
-	Character(int row, int col);
-	Character(Character const & src);
-	Character& operator=(Character const & rhs);
-	~Character(void);
 
-	bool	take_damage(int damage);
+	Enemy( char symbol, int row, int col, int hp, int dmg );
+	Enemy( Enemy const & obj );
+
+	virtual ~Enemy( void );
+
+	Enemy & operator=( Enemy const & rhs );
+
+	Enemy * clone(void) const;
+
+	void	take_damage(int dmg);
+	void	collide( Enemy * rhs );
+	void	hit_player( Character * rhs );
 	int		getHP( void );
 
-	static int const	MaxHP = 50;
-
 private:
-	Character(void);
+	Enemy( void );
 
 	int		_hp;
+	int		_dmg;
+	int		_ff;
 
 };
 

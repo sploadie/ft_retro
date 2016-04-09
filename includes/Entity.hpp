@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   Entity.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/09 13:11:03 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 17:40:42 by tgauvrit         ###   ########.fr       */
+/*   Created: 2016/04/09 15:13:59 by tgauvrit          #+#    #+#             */
+/*   Updated: 2016/04/09 17:13:19 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
+#ifndef ENTITY_H
+# define ENTITY_H
 
-# include "Entity.hpp"
+# include <iostream>
+# include <curses.h>
 
-class Character : public Entity {
+class Entity {
 
 public:
-	Character(int row, int col);
-	Character(Character const & src);
-	Character& operator=(Character const & rhs);
-	~Character(void);
+	Entity(char symbol, int row, int col);
 
-	bool	take_damage(int damage);
-	int		getHP( void );
+	Entity( Entity const & obj );
 
-	static int const	MaxHP = 50;
+	~Entity( void );
+
+	Entity & operator=( Entity const & rhs );
+
+	void		draw(void) const;
+	char 		getSymbol() const;
+	int &		refRow();
+	int &		refCol();
+
+	char 		_symbol;
+	int			_row;
+	int			_col;
+
+protected:
+	Entity( void );
 
 private:
-	Character(void);
-
-	int		_hp;
 
 };
 

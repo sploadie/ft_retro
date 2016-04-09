@@ -3,59 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 13:10:52 by sraccah           #+#    #+#             */
-/*   Updated: 2016/01/09 17:19:43 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/09 17:41:04 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.hpp"
+#include "Character.hpp"
 
-Character::Character(char symbol, int row, int col): _symbol(symbol), _row(row), _col(col)
+Character::Character( void ) : Entity('^', 0, 0) {
+	this->_hp = Character::MaxHP;
+}
+
+Character::Character(int row, int col) : Entity('^', row, col)
 {
+	this->_hp = Character::MaxHP;
+	std::cout << "Character created..." << std::endl;
 	attron(A_BOLD);
-	print("Character created...\n", 3);
+	attron(COLOR_PAIR(3));
+	printw("Character created...");
+	attroff(COLOR_PAIR(3));
 	attroff(A_BOLD);
 	return ;
 }
 
-Character::Character(Character const & src, char symbol, int row, int col): _symbol(symbol), _row(row), _col(col)
-{
-	*this = src;
-	return ;
-}
+Character::Character(Character const & src) : Entity('^', 0, 0) { *this = src; }
 
 Character& Character::operator=(Character const & rhs)
 {
-	(void)rhs;
+	this->_hp = rhs._hp;
+	this->Entity::operator=(rhs);
 	return *this;
 }
 
 Character::~Character(void)
 {
-	print("Character deleted...\n", 3);
+	std::cout << "Character deleted..." << std::endl;
+	attron(COLOR_PAIR(3));
+	printw("Character deleted...");
+	attroff(COLOR_PAIR(3));
 	return ;
 }
 
-void		Character::print(const char *msg, int nbr)
-{
-	attron(COLOR_PAIR(nbr));
-	printw(msg);
-	attroff(COLOR_PAIR(nbr));
+bool	Character::take_damage(int damage) {
+	this->_hp -= damage;
+	if (this->_hp < 1) { this->_hp = 0; return true; }
+	if (this->_hp > Character::MaxHP) { this->_hp = Character::MaxHP; }
+	return false;
 }
 
-char 		Character::getSymbol(void)
-{
-	return this->_symbol;
-}
-
-int 		Character::getRow(void)
-{
-	return this->_row;
-}
-
-int 		Character::getCol(void)
-{
-	return this->_col;
-}
+int	Character::getHP( void ) { return this->_hp; }

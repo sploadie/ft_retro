@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Screen.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 17:50:04 by sraccah           #+#    #+#             */
-/*   Updated: 2016/01/09 17:40:44 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/09 15:41:05 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.hpp"
+#include "Screen.hpp"
 
 Screen::Screen(void)
 {
@@ -18,8 +18,14 @@ Screen::Screen(void)
 	initscr();
 	// Clear screen
   	clear();
+  	// User input not displayed
   	noecho();
+  	// User input does not require newline
   	cbreak();
+  	// Special user input does not generate a signal and is passed to program instead
+  	raw();
+  	// getch does not wait for user input
+  	nodelay(stdscr, TRUE);
   	// Preparing the keypad and cursor
   	keypad(stdscr, TRUE);
   	curs_set(0);
@@ -66,41 +72,29 @@ void		Screen::hello()
 	attron(COLOR_PAIR(1));
 	attron(A_BOLD);
 	attron(A_BLINK);
-	printw("=> Hello World <=\n");
+	printw("=> Hello World <=");
 	attroff(A_BLINK);
 	move(11, 38);
 	attron(COLOR_PAIR(2));
 	attron(A_BOLD);
-	printw("Welcome to our ft_retro game !\n");
+	printw("Welcome to our ft_retro game !");
 	attroff(A_BOLD);
 	move(15, 30);
 	attron(COLOR_PAIR(4));
-	printw("Press any key to start or 'q' to quit the game\n");
+	printw("Press any key to start or 'q' to quit the game");
 	attroff(COLOR_PAIR(4));
 	move(0, 0);
+	refresh();
 }
 
-void		Screen::print(const char *msg)
+void		Screen::badSize()
 {
-	printw(msg);
-}
-
-int			Screen::getHeight()
-{
-	return this->_height;
-}
-
-void		Screen::setHeight(int height)
-{
-	this->_height = height;
-}
-
-int			Screen::getWidth()
-{
-	return this->_width;
-}
-
-void		Screen::setWidth(int width)
-{
-	this->_width = width;
+	// Display Info
+	clear();
+	move(0, 0);
+	printw("Please resize your terminal and then relaunch. Thank you!\n");
+	printw("Current Size: %dx%d\n", LINES, COLS);
+	printw("Please resize to: %dx%d", Screen::Height, Screen::Width);
+	move(0, 0);
+	refresh();
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+         #
+#    By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/22 14:52:23 by sraccah           #+#    #+#              #
-#    Updated: 2016/01/10 13:49:58 by sraccah          ###   ########.fr        #
+#    Updated: 2016/04/09 16:12:39 by tgauvrit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,15 @@ NAME = ft_retro
 MAKE = make
 CC = clang++
 RM = /bin/rm
-SDIR = srcs/
 
-SRC = $(SDIR)main.cpp \
-	$(SDIR)Screen.cpp \
-	$(SDIR)Character.cpp
+SRC_NAMES = main Entity Screen Character Enemy Squad
+
+SRC_DIR = srcs/
+SRC_FILES = $(addsuffix .cpp,$(SRC_NAMES))
+SRC = $(addprefix $(SRC_DIR),$(SRC_FILES))
 
 OBJ = $(SRC:.cpp=.o)
-INC = -I includes -I /usr/local/opt/ncurses/include
+INC = -I ./includes -I /usr/local/opt/ncurses/include
 LIB = -L /usr/local/opt/ncurses/lib
 CFLAGS = -Wall -Wextra -Werror
 R = \033[31;1m
@@ -45,7 +46,7 @@ $(NAME): $(OBJ)
 	@echo "$(Y)-----------------------------------"
 	@echo "\n$(Y)------------ $(P)Enjoy $(C);)$(Y) -------------$(Z)"
 
-%.o:%.c
+%.o:%.cpp
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
