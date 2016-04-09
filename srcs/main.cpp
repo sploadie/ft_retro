@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 19:12:05 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/09 19:22:32 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "Screen.hpp"
 #include "Character.hpp"
 #include "SpaceRock.hpp"
+#include "Bullet.hpp"
 #include "Squad.hpp"
 
 static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
@@ -142,6 +143,8 @@ static void		game_loop(Character & player, int ch)
 					row = 0;
 				if (row > LINES-3)
 					row = LINES-3;
+			} else if (ch == 'f') {	// F (SHOOT)
+	 			squad.push(new Bullet(row, col));
 			}
  		}
  		if (ch == 'q' || ch == 'Q') {
