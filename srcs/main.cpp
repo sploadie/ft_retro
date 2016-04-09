@@ -6,13 +6,14 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 19:22:32 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/09 19:37:31 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <curses.h>
 #include <unistd.h>
+#include <cstdlib>
 #include <ctime>
 #include <signal.h>
 #include "Screen.hpp"
@@ -97,6 +98,7 @@ static void		game_loop(Character & player, int ch)
 	clock_t		loop_start_time = 0;
 	int			loop_remaining_time = 0;
 	int			frame_count = 0;
+	int			i;
 	// Check if player want to quit the game
 	if (ch == 'q' || ch == 'Q')
 		return ;
@@ -104,9 +106,8 @@ static void		game_loop(Character & player, int ch)
  	player.draw();
  	// Enemy Example
  	Squad squad;
- 	for (int i=0;i<1600;i++) {
-	 	squad.push(new SpaceRock(2 + (i / 100), 5 + (i % 100)));
-	}
+ 	srand(time(NULL));
+ 	
  	squad.draw();
  	// Main loop
  	while (42)
@@ -115,18 +116,27 @@ static void		game_loop(Character & player, int ch)
  		loop_remaining_time = 40000 - clockToUseconds(clock() - loop_start_time);
  		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
  		loop_start_time = clock();
+ 		// Gen Enemies
+ 		for (i=0;i<COLS;i++) {
+ 			if (rand() % (COLS/2) == 0) {
+ 				squad.push(new SpaceRock(0, i));
+ 			}
+		}
+ 		// Read Input
  		ch = getch();
  		clear();
  		print_data(row, col, player.getHP(), frame_count, loop_remaining_time);
  		if (alive) {
 	 		if (ch == KEY_LEFT) {			// KEY_LEFT
-	 			col = col - 2;
+	 			col = col - 1;
+	 			// col = col - 2;
 				if (col < 0)
 					col = 0;
 				if (col > COLS-1)
 					col = COLS-1;
 	 		} else if (ch == KEY_RIGHT) {	// KEY_RIGHT
-	 			col = col + 2;
+	 			col = col + 1;
+	 			// col = col + 2;
 				if (col < 0)
 					col = 0;
 				if (col > COLS-1)
