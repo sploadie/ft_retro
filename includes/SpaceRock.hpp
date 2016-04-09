@@ -1,48 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Squad.hpp                                          :+:      :+:    :+:   */
+/*   SpaceRock.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/08 17:07:25 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:06:52 by tgauvrit         ###   ########.fr       */
+/*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
+/*   Updated: 2016/04/09 19:04:54 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SQUAD_H
-# define SQUAD_H
+#ifndef SPACEROCK_H
+# define SPACEROCK_H
 
-# include <cstddef>
 # include "Enemy.hpp"
 # include "Character.hpp"
 
-class Squad {
+class SpaceRock : public Enemy {
 
 public:
 
-	Squad( void );
-	Squad( Squad const & obj );
+	SpaceRock( int row, int col );
+	SpaceRock( SpaceRock const & obj );
 
-	~Squad( void );
+	virtual ~SpaceRock( void );
 
-	Squad & operator=( Squad const & rhs );
+	SpaceRock & operator=( SpaceRock const & rhs );
 
-	int getCount( void ) const;
-	Enemy * getUnit( int ) const;
-	void deleteUnit( int );
-	int push( Enemy * );
+	SpaceRock * clone(void) const;
 
-	void draw( void ) const;
-	void move( int frames, Character * player );
-	void collisions( Character * player );
+	void	move( int frame, Character * rhs );
+
+	static char const Symbol = '@';
+	static int  const HP = 1;
+	static int  const Dmg = 1;
+	static bool const FF = false;
 
 private:
-	int					_count;
-	int					_array_size;
-	Enemy **			_enemies;
-
-	static int const	_AllocSize = 32;
+	SpaceRock( void );
 
 };
 

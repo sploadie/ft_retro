@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 18:27:22 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/09 19:12:05 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <signal.h>
 #include "Screen.hpp"
 #include "Character.hpp"
-#include "Enemy.hpp"
+#include "SpaceRock.hpp"
 #include "Squad.hpp"
 
 static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
@@ -104,7 +104,7 @@ static void		game_loop(Character & player, int ch)
  	// Enemy Example
  	Squad squad;
  	for (int i=0;i<1600;i++) {
-	 	squad.push(new Enemy('@', 2 + (i / 100), 5 + (i % 100), 1, 1));
+	 	squad.push(new SpaceRock(2 + (i / 100), 5 + (i % 100)));
 	}
  	squad.draw();
  	// Main loop
@@ -147,6 +147,7 @@ static void		game_loop(Character & player, int ch)
  		if (ch == 'q' || ch == 'Q') {
  			break;
  		}
+ 		squad.move(frame_count, &player);
  		squad.collisions(&player);
  		squad.draw();
  		if (player.getHP() > 0) {

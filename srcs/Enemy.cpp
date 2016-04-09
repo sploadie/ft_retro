@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 17:46:24 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/09 19:01:07 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Enemy::Enemy( void ) : Entity(), _hp(0), _dmg(0), _ff(false) {}
 
-Enemy::Enemy( char symbol, int row, int col, int hp, int dmg ) : Entity(symbol, row, col), _hp(hp), _dmg(dmg), _ff(false) {}
+Enemy::Enemy( char symbol, int row, int col, int hp = 1, int dmg = 1, bool ff = false ) : Entity(symbol, row, col), _hp(hp), _dmg(dmg), _ff(ff) {}
 
 Enemy::Enemy( Enemy const & obj ) : Entity() { *this = obj; }
 
@@ -26,10 +26,6 @@ Enemy & Enemy::operator=( Enemy const & rhs ) {
 	this->_ff = rhs._ff;
 	this->Entity::operator=(rhs);
 	return *this;
-}
-
-Enemy * Enemy::clone(void) const {
-	return new Enemy(*this);
 }
 
 void	Enemy::take_damage(int dmg) {
