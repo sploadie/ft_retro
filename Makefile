@@ -6,7 +6,7 @@
 #    By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/22 14:52:23 by sraccah           #+#    #+#              #
-#    Updated: 2016/04/10 14:54:23 by tgauvrit         ###   ########.fr        #
+#    Updated: 2016/04/10 20:55:32 by tgauvrit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MAKE = make
 CC = clang++
 RM = /bin/rm
 
-SRC_NAMES = main Entity Screen Character Enemy Squad SpaceRock Bullet LightScout HeavyScout Fighter Laser Runner Star
+SRC_NAMES = main Entity Screen Character Enemy Squad SpaceRock Bullet LightScout HeavyScout Fighter Laser Runner Star Boss Coffee
 
 SRC_DIR = srcs/
 SRC_FILES = $(addsuffix .cpp,$(SRC_NAMES))

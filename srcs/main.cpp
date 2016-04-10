@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 18:51:18 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 21:05:55 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,83 @@
 #include "Fighter.hpp"
 #include "Runner.hpp"
 #include "Star.hpp"
+#include "Boss.hpp"
+#include "Coffee.hpp"
 #include "Squad.hpp"
 
 extern int		g_score;
 
-namespace 		boss {
-	void		send_boss(Squad & squad) {
+namespace 		Bosses {
+	void		proto_boss(Squad & squad) {
 		int 	i = COLS/2-2;
-		squad.push(new Boss(0, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(1, i+1, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(1, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(1, i+3, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(2, i, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(2, i+1, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(2, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(2, i+3, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(2, i+4, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(3, i+1, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(3, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(3, i+3, "\xF0\x9F\x92\x96", 1, 1, 2));
-		squad.push(new Boss(4, i+2, "\xF0\x9F\x91\xBD", 1, 1, 2));
+		squad.push(new Boss(0, i+2, '#', 1, 1, 2, 4));
+		squad.push(new Boss(1, i+1, '#', 1, 1, 2, 4));
+		squad.push(new Boss(1, i+2, '#', 1, 1, 2, 4));
+		squad.push(new Boss(1, i+3, '#', 1, 1, 2, 4));
+		squad.push(new Boss(2, i,   '#', 1, 1, 2, 4));
+		squad.push(new Boss(2, i+1, '#', 1, 1, 2, 4));
+		squad.push(new Boss(2, i+2, '#', 1, 1, 2, 4));
+		squad.push(new Boss(2, i+3, '#', 1, 1, 2, 4));
+		squad.push(new Boss(2, i+4, '#', 1, 1, 2, 4));
+		squad.push(new Boss(3, i+1, '#', 1, 1, 2, 4));
+		squad.push(new Boss(3, i+2, '#', 1, 1, 2, 4));
+		squad.push(new Boss(3, i+3, '#', 1, 1, 2, 4));
+		squad.push(new Boss(4, i+2, '#', 1, 1, 2, 4));
+	}
+	void		first_boss(Squad & squad) {
+		int i, j, k, l;
+		// 0
+		i = 0;
+		for (j=0;j<3;j++) {
+			squad.push(new Boss(0, i++, 'X', 999, 5, 2, 60));
+		}
+		for (j=0;j<3;j++) {
+			squad.push(new Boss(0, i++, 'O', 5, 5, 2, 60));
+		}
+		for (j=0;i<COLS;j++) {
+			squad.push(new Boss(0, i++, 'X', 999, 5, 2, 60));
+		}
+		// 1 - 3
+		for (l=1;l<4;l++) {
+			i = 0;
+			for (j=0;j<3;j++) {
+				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
+			}
+			for (k=0;k<20;k++) {
+				for (j=0;j<3;j++) {
+					squad.push(new Boss(l, i++, 'O', 5, 5, 2, 60));
+				}
+				i+=2;
+			}
+			squad.push(new Boss(l, i++, 'O', 5, 5, 2, 60));
+			for (j=0;i<COLS;j++) {
+				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
+			}
+		}
+		// 4 - 6
+		for (l=4;l<7;l++) {
+			i = 0;
+			for (j=0;j<3;j++) {
+				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
+			}
+			for (k=0;k<20;k++) {
+				i+=4;
+				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
+			}
+			i++;
+			for (j=0;i<COLS;j++) {
+				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
+			}
+		}
+		// 7
+		i = 0;
+		for (j=0;j<103;j++) {
+			squad.push(new Boss(7, i++, 'X', 999, 5, 2, 60));
+		}
+		i++;
+		for (j=0;i<COLS;j++) {
+			squad.push(new Boss(7, i++, 'X', 999, 5, 2, 60));
+		}
 	}
 }
 
@@ -124,6 +181,7 @@ static void		game_loop(Character & player, int ch)
 	clock_t		loop_start_time = 0;
 	int			loop_remaining_time = 0;
 	int			frame_count = 0;
+	// int			frame_count = 4999;
 	int			i;
 	// Check if player want to quit the game
 	if (ch == 'q' || ch == 'Q')
@@ -134,14 +192,24 @@ static void		game_loop(Character & player, int ch)
  	Squad squad;
  	Squad background;
  	srand(time(NULL));
- 	
- 	squad.draw();
+
+ 	bool	boss_waiting = false;
+ 	bool	boss_present = false;
+ 	int		boss_count = 0;
+
+ 	int		rock_count;
+ 	int		rock_row;
+ 	int		rock_col;
+
  	// Main loop
  	while (42)
  	{
  		frame_count++;
+ 		if (frame_count == 5000 || frame_count % 15000 == 0) {
+ 			boss_waiting = true;
+ 		}
  		// loop_remaining_time = 40000 - clockToUseconds(clock() - loop_start_time);
- 		loop_remaining_time = 20000 - clockToUseconds(clock() - loop_start_time);
+ 		loop_remaining_time = 20000 - (clockToUseconds(clock()) - clockToUseconds(loop_start_time));
  		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
  		loop_start_time = clock();
  		// Gen Background
@@ -151,21 +219,44 @@ static void		game_loop(Character & player, int ch)
  			}
  		}
  		// Gen Enemies
-		if (frame_count % 12 == 1) {
+		if (frame_count % 12 == 1 && !boss_waiting && !boss_present) {
 	 		for (i=0;i<COLS;i++) {
-	 			if (rand() % (COLS/2) == 0) {
-					squad.push(new SpaceRock(0, i));
+	 			if (rand() % (COLS/2) == 0 && SpaceRock::getCount() < 100 + (10 * frame_count/250)) {
+	 				rock_row = 0;
+	 				rock_col = i;
+					squad.push(new SpaceRock(rock_row, rock_col));
+					for (rock_count=0;rock_count<4;rock_count++) {
+						if (rand() % 2)
+							rock_row++;
+						else
+							rock_col++;
+						squad.push(new SpaceRock(rock_row, rock_col));
+					}
 	 			}
-	 			if (rand() % COLS == 0) {
+	 			if (rand() % (COLS * 500) == 0 && Coffee::getCount() < 1) {
+	 				squad.push(new Coffee(0, i));
+	 			} else if (rand() % COLS == 0 && LightScout::getCount() < 2 + frame_count/500) {
 	 				squad.push(new LightScout(0, i));
-	 			} else if (rand() % COLS == 0) {
+	 			} else if (rand() % COLS == 0 && Runner::getCount() < 2 + frame_count/500) {
 	 				squad.push(new Runner(0, i));
-	 			} else if (rand() % COLS == 0) {
+	 			} else if (rand() % COLS == 0 && HeavyScout::getCount() < 2 + frame_count/700) {
 	 				squad.push(new HeavyScout(0, i));
 	 			} else if (rand() % (COLS * 4) == 0 && Fighter::getCount() < 1 + frame_count/1000) {
 	 				squad.push(new Fighter(0, i));
 	 			}
 			}
+		} else if (boss_waiting && squad.getCount() == 0) {
+			boss_waiting = false;
+			boss_present = true;
+			// Spawn Boss
+			if (boss_count == 0) {
+				Bosses::first_boss(squad);
+			} else {
+				Bosses::first_boss(squad);
+			}
+		} else if (boss_present && squad.getCount() == 0) {
+			boss_present = false;
+			boss_count++;
 		}
  		// Read Input
  		ch = getch();

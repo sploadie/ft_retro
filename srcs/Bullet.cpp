@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 16:55:09 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 19:52:52 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	Bullet::take_damage(int dmg) {
 }
 
 void	Bullet::collide( Enemy * rhs ) {
-	if (this->_col == rhs->_col && (this->_row == rhs->_row || this->_row-1 == rhs->_row)) {
+	// if (this->_col == rhs->_col && (this->_row == rhs->_row || this->_row-1 == rhs->_row)) {
+	if (this->_col == rhs->_col && (this->_row == rhs->_row)) {
 		this->take_damage(0);
 		rhs->take_damage(this->getDmg());
 	}

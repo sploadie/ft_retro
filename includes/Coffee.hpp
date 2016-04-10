@@ -1,46 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Boss.hpp                                           :+:      :+:    :+:   */
+/*   Coffee.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/10 17:21:56 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 19:49:46 by tgauvrit         ###   ########.fr       */
+/*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
+/*   Updated: 2016/04/10 20:59:33 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		BOSS_HPP
-# define	BOSS_HPP
+#ifndef COFFEE_H
+# define COFFEE_H
 
 # include "Enemy.hpp"
 # include "Character.hpp"
 
-class Boss :  public Enemy{
+class Coffee : public Enemy {
 
 public:
 
-	Boss( int row, int col, char symbol, int hp, int dmg, int points, int speed );
-	Boss( Boss const & obj );
+	Coffee( int row, int col );
+	Coffee( Coffee const & obj );
 
-	virtual ~Boss( void );
+	virtual ~Coffee( void );
 
-	Boss & operator=( Boss const & rhs );
+	Coffee & operator=( Coffee const & rhs );
 
-	Boss * clone(void) const;
+	Coffee * clone(void) const;
 
-	// void	draw(void) const;
+	void	draw( void ) const;
+
 	void	move( int frame, Character * rhs );
 
-	static int  const HP = 1;
-	static int  const Dmg = 2;
+	static int	getCount( void );
+
+	static char const Symbol = '+';
+	static int  const HP = 3;
+	static int  const Dmg = -1;
 	static bool const FF = false;
-	static int  const Points = 2;
+	static int  const Points = 5;
 
 private:
-	Boss( void );
-	// std::string _symbol;
-	int _speed;
+	Coffee( void );
 
+	static int	_Count;
 };
- #endif
+
+#endif
