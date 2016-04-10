@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 17:42:47 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 18:51:18 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@
 #include "Squad.hpp"
 
 extern int		g_score;
+
+namespace 		boss {
+	void		send_boss(Squad & squad) {
+		int 	i = COLS/2-2;
+		squad.push(new Boss(0, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(1, i+1, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(1, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(1, i+3, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(2, i, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(2, i+1, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(2, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(2, i+3, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(2, i+4, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(3, i+1, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(3, i+2, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(3, i+3, "\xF0\x9F\x92\x96", 1, 1, 2));
+		squad.push(new Boss(4, i+2, "\xF0\x9F\x91\xBD", 1, 1, 2));
+	}
+}
 
 static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
 {
