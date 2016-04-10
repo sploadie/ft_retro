@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LightScout.cpp                                     :+:      :+:    :+:   */
+/*   Laser.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:31:09 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 13:31:04 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Laser.hpp"
 
-#include "LightScout.hpp"
+Laser::Laser( void ) : Enemy(Laser::Symbol, 0, 0, Laser::HP, Laser::Dmg, Laser::FF) {}
 
-LightScout::LightScout( void ) : Enemy(LightScout::Symbol, 0, 0, LightScout::HP, LightScout::Dmg, LightScout::FF) {}
+Laser::Laser( int row, int col ) : Enemy( Laser::Symbol, row, col, Laser::HP, Laser::Dmg, Laser::FF ) {}
 
-LightScout::LightScout( int row, int col ) : Enemy( LightScout::Symbol, row, col, LightScout::HP, LightScout::Dmg, LightScout::FF ) {}
+Laser::Laser( Laser const & obj ) : Enemy() { *this = obj; }
 
-LightScout::LightScout( LightScout const & obj ) : Enemy() { *this = obj; }
+Laser::~Laser( void ) {}
 
-LightScout::~LightScout( void ) {}
-
-LightScout & LightScout::operator=( LightScout const & rhs ) {
+Laser & Laser::operator=( Laser const & rhs ) {
 	this->Enemy::operator=(rhs);
 	return *this;
 }
 
-LightScout * LightScout::clone(void) const {
-	return new LightScout(*this);
+Laser * Laser::clone(void) const {
+	return new Laser(*this);
 }
 
-void		LightScout::move( int frame, Character * rhs ) {
+void		Laser::move( int frame, Character * rhs ) {
 	(void)rhs;
-	if (frame % 3 == 0) { this->_row++; }
+	if (frame % 2 == 0) { this->_row++; }
 }

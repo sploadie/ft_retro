@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bullet.hpp                                         :+:      :+:    :+:   */
+/*   Fighter.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:22:35 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 13:27:56 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BULLET_H
-# define BULLET_H
+#ifndef FIGHTER_H
+# define FIGHTER_H
 
 # include "Enemy.hpp"
 # include "Character.hpp"
+# include "Laser.hpp"
 
-class Bullet : public Enemy {
+class Fighter : public Enemy {
 
 public:
 
-	Bullet( int row, int col );
-	Bullet( Bullet const & obj );
+	Fighter( int row, int col );
+	Fighter( Fighter const & obj );
 
-	virtual ~Bullet( void );
+	virtual ~Fighter( void );
 
-	Bullet & operator=( Bullet const & rhs );
+	Fighter & operator=( Fighter const & rhs );
 
-	Bullet * clone(void) const;
+	Fighter * clone(void) const;
 
-	void	take_damage(int dmg);
-	void	collide( Enemy * rhs );
-	void	hit_player( Character * rhs );
+	void	spawn( int frame, Character * rhs, Squad * squad );
 	void	move( int frame, Character * rhs );
 
-	static char const Symbol = '\'';
-	static int  const HP = 1;
-	static int  const Dmg = 1;
-	static bool const FF = true;
+	static char const Symbol = 'w';
+	static int  const HP = 2;
+	static int  const Dmg = 2;
+	static bool const FF = false;
 
 private:
-	Bullet( void );
+	Fighter( void );
 
 };
 

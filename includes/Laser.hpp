@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bullet.hpp                                         :+:      :+:    :+:   */
+/*   Laser.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:22:35 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 13:26:31 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BULLET_H
-# define BULLET_H
+#ifndef LASER_H
+# define LASER_H
 
 # include "Enemy.hpp"
 # include "Character.hpp"
 
-class Bullet : public Enemy {
+class Laser : public Enemy {
 
 public:
 
-	Bullet( int row, int col );
-	Bullet( Bullet const & obj );
+	Laser( int row, int col );
+	Laser( Laser const & obj );
 
-	virtual ~Bullet( void );
+	virtual ~Laser( void );
 
-	Bullet & operator=( Bullet const & rhs );
+	Laser & operator=( Laser const & rhs );
 
-	Bullet * clone(void) const;
+	Laser * clone(void) const;
 
-	void	take_damage(int dmg);
-	void	collide( Enemy * rhs );
-	void	hit_player( Character * rhs );
 	void	move( int frame, Character * rhs );
 
-	static char const Symbol = '\'';
+	static char const Symbol = '.';
 	static int  const HP = 1;
 	static int  const Dmg = 1;
-	static bool const FF = true;
+	static bool const FF = false;
 
 private:
-	Bullet( void );
+	Laser( void );
 
 };
 

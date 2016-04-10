@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 09:38:08 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 12:25:58 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	Bullet::collide( Enemy * rhs ) {
 
 void	Bullet::hit_player( Character * rhs ) { (void)rhs; }
 
-
-void		Bullet::move( int frame, Character * rhs ) {
+void	Bullet::move( int frame, Character * rhs ) {
 	(void)rhs;
 	if (frame % 2 == 0) { this->_row--; }
 }

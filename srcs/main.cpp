@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 12:37:44 by asmets           ###   ########.fr       */
+/*   Updated: 2016/04/10 13:59:57 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 #include "Bullet.hpp"
 #include "LightScout.hpp"
 #include "HeavyScout.hpp"
-#include "Squad.hpp"
+#include "Fighter.hpp"
 #include "Runner.hpp"
+#include "Squad.hpp"
 
 static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
 {
@@ -132,6 +133,8 @@ static void		game_loop(Character & player, int ch)
 	 				squad.push(new LightScout(0, i));
 	 			} else if (rand() % COLS == 0) {
 	 				squad.push(new HeavyScout(0, i));
+	 			} else if (rand() % COLS == 0) {
+	 				squad.push(new Fighter(0, i));
 	 			}
 			}
 		}
