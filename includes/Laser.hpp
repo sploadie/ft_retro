@@ -35,6 +35,7 @@ public:
 	static int  const HP = 1;
 	static int  const Dmg = 1;
 	static bool const FF = false;
+	static int  const Points = 0;
 
 private:
 	Laser( void );

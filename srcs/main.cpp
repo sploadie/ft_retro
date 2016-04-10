@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 14:28:55 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 15:05:17 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "HeavyScout.hpp"
 #include "Fighter.hpp"
 #include "Runner.hpp"
+#include "Star.hpp"
 #include "Squad.hpp"
 
 extern int		g_score;
@@ -112,6 +113,7 @@ static void		game_loop(Character & player, int ch)
  	player.draw();
  	// Enemy Example
  	Squad squad;
+ 	Squad background;
  	srand(time(NULL));
  	
  	squad.draw();
@@ -122,17 +124,22 @@ static void		game_loop(Character & player, int ch)
  		loop_remaining_time = 40000 - clockToUseconds(clock() - loop_start_time);
  		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
  		loop_start_time = clock();
+ 		// Gen Background
+	 	for (i=0;i<COLS;i++) {
+ 			if (rand() % (COLS/2) == 0) {
+				background.push(new Star(0, i));
+ 			}
+ 		}
  		// Gen Enemies
 		if (frame_count % 12 == 1) {
 	 		for (i=0;i<COLS;i++) {
 	 			if (rand() % (COLS/2) == 0) {
-					if (i % 2 == 0)
-						squad.push(new Runner(0, i));
-					else
-						squad.push(new SpaceRock(0, i));
+					squad.push(new SpaceRock(0, i));
 	 			}
 	 			if (rand() % COLS == 0) {
 	 				squad.push(new LightScout(0, i));
+	 			} else if (rand() % COLS == 0) {
+	 				squad.push(new Runner(0, i));
 	 			} else if (rand() % COLS == 0) {
 	 				squad.push(new HeavyScout(0, i));
 	 			} else if (rand() % COLS == 0) {
@@ -178,6 +185,11 @@ static void		game_loop(Character & player, int ch)
  		if (ch == 'q' || ch == 'Q') {
  			break;
  		}
+ 		background.move(frame_count, &player);
+ 		background.handle_oob();
+		attron(COLOR_PAIR(3));
+ 		background.draw();
+		attroff(COLOR_PAIR(3));
  		squad.spawn(frame_count, &player);
  		squad.move(frame_count, &player);
  		squad.collisions(&player);

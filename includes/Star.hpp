@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fighter.hpp                                        :+:      :+:    :+:   */
+/*   Star.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:27:56 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:10:38 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIGHTER_H
-# define FIGHTER_H
+#ifndef STAR_H
+# define STAR_H
 
 # include "Enemy.hpp"
 # include "Character.hpp"
-# include "Laser.hpp"
 
-class Fighter : public Enemy {
+class Star : public Enemy {
 
 public:
 
-	Fighter( int row, int col );
-	Fighter( Fighter const & obj );
+	Star( int row, int col );
+	Star( Star const & obj );
 
-	virtual ~Fighter( void );
+	virtual ~Star( void );
 
-	Fighter & operator=( Fighter const & rhs );
+	Star & operator=( Star const & rhs );
 
-	Fighter * clone(void) const;
+	Star * clone(void) const;
 
-	void	spawn( int frame, Character * rhs, Squad * squad );
+	void	draw(void) const;
 	void	move( int frame, Character * rhs );
 
-	static char const Symbol = 'w';
-	static int  const HP = 2;
-	static int  const Dmg = 2;
-	static bool const FF = false;
-	static int  const Points = 3;
+	static char const Symbol = '|';
+	static int  const HP = 1;
+	static int  const Dmg = 1;
+	static bool const FF = true;
+	static int  const Points = 0;
 
 private:
-	Fighter( void );
+	Star( void );
 
 };
 

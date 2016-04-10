@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Laser.cpp                                          :+:      :+:    :+:   */
+/*   Star.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 14:37:38 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:10:33 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Laser.hpp"
+#include "Star.hpp"
 
-Laser::Laser( void ) : Enemy(Laser::Symbol, 0, 0, Laser::HP, Laser::Dmg, Laser::FF, Laser::Points ) {}
+Star::Star( void ) : Enemy(Star::Symbol, 0, 0, Star::HP, Star::Dmg, Star::FF, Star::Points) {}
 
-Laser::Laser( int row, int col ) : Enemy( Laser::Symbol, row, col, Laser::HP, Laser::Dmg, Laser::FF, Laser::Points ) {}
+Star::Star( int row, int col ) : Enemy( Star::Symbol, row, col, Star::HP, Star::Dmg, Star::FF, Star::Points ) {}
 
-Laser::Laser( Laser const & obj ) : Enemy() { *this = obj; }
+Star::Star( Star const & obj ) : Enemy() { *this = obj; }
 
-Laser::~Laser( void ) {}
+Star::~Star( void ) {}
 
-Laser & Laser::operator=( Laser const & rhs ) {
+Star & Star::operator=( Star const & rhs ) {
 	this->Enemy::operator=(rhs);
 	return *this;
 }
 
-Laser * Laser::clone(void) const {
-	return new Laser(*this);
+Star * Star::clone(void) const {
+	return new Star(*this);
 }
 
-void		Laser::move( int frame, Character * rhs ) {
-	(void)rhs;
-	if (frame % 2 == 0) { this->_row++; }
+void		Star::draw(void) const {
+	this->Entity::draw();
+	// mvaddstr(this->_row, this->_col, "\xE2\x98\x86");
+}
+
+void		Star::move( int frame, Character * rhs ) {
+	(void)frame; (void)rhs;
+	this->_row++;
 }

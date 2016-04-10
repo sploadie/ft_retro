@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Runner.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 13:13:27 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 14:33:21 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 14:36:02 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ public:
 	static int  const HP = 1;
 	static int  const Dmg = 1;
 	static bool const FF = false;
+	static int  const Points = 1;
 
 private:
 	Runner( void );

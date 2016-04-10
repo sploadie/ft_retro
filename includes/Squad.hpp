@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 17:07:25 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:27:52 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:00:37 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ public:
 
 	void draw( void ) const;
 	void move( int frames, Character * player );
+	void handle_oob( void );
 	void collisions( Character * player );
 	void spawn( int frames, Character * player );
 

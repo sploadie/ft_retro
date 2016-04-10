@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Runner.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asmets <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 11:02:23 by asmets            #+#    #+#             */
-/*   Updated: 2016/04/10 12:57:25 by asmets           ###   ########.fr       */
+/*   Updated: 2016/04/10 14:37:31 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Runner.hpp"
 
-Runner::Runner(void): Enemy(Runner::Symbol, 0, 0, Runner::HP, Runner::Dmg, Runner::FF) {
+Runner::Runner(void): Enemy(Runner::Symbol, 0, 0, Runner::HP, Runner::Dmg, Runner::FF, Runner::Points ) {
 	this->_direction = rand() % 2 ? 1 : -1;
 }
 
-Runner::Runner( int row, int col ) : Enemy( Runner::Symbol, row, col, Runner::HP, Runner::Dmg, Runner::FF ) {
+Runner::Runner( int row, int col ) : Enemy( Runner::Symbol, row, col, Runner::HP, Runner::Dmg, Runner::FF, Runner::Points ) {
 	this->_direction = rand() % 2 ? 1 : -1;
 }
 
