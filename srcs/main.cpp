@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 10:49:06 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 12:37:44 by asmets           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "LightScout.hpp"
 #include "HeavyScout.hpp"
 #include "Squad.hpp"
+#include "Runner.hpp"
 
 static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
 {
@@ -119,10 +120,13 @@ static void		game_loop(Character & player, int ch)
  		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
  		loop_start_time = clock();
  		// Gen Enemies
- 		if (frame_count % 12 == 1) {
+		if (frame_count % 12 == 1) {
 	 		for (i=0;i<COLS;i++) {
 	 			if (rand() % (COLS/2) == 0) {
-	 				squad.push(new SpaceRock(0, i));
+					if (i % 2 == 0)
+						squad.push(new Runner(0, i));
+					else
+						squad.push(new SpaceRock(0, i));
 	 			}
 	 			if (rand() % COLS == 0) {
 	 				squad.push(new LightScout(0, i));
@@ -163,7 +167,7 @@ static void		game_loop(Character & player, int ch)
 				if (row > LINES-3)
 					row = LINES-3;
 			} else if (ch == 'f') {	// F (SHOOT)
-	 			squad.push(new Bullet(row, col));
+				 squad.push(new Bullet(row, col));
 			}
  		}
  		if (ch == 'q' || ch == 'Q') {
