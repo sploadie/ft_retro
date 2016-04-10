@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 21:05:55 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 21:17:06 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ static void		game_loop(Character & player, int ch)
 						squad.push(new SpaceRock(rock_row, rock_col));
 					}
 	 			}
-	 			if (rand() % (COLS * 500) == 0 && Coffee::getCount() < 1) {
+	 			if (rand() % (COLS * 50) == 0 && Coffee::getCount() < 1) {
 	 				squad.push(new Coffee(0, i));
 	 			} else if (rand() % COLS == 0 && LightScout::getCount() < 2 + frame_count/500) {
 	 				squad.push(new LightScout(0, i));
