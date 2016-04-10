@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   Bullet.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 12:25:58 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 14:29:09 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bullet.hpp"
 
-Bullet::Bullet( void ) : Enemy(Bullet::Symbol, 0, 0, Bullet::HP, Bullet::Dmg, Bullet::FF) {}
+Bullet::Bullet( void ) : Enemy(Bullet::Symbol, 0, 0, Bullet::HP, Bullet::Dmg, Bullet::FF, Bullet::Points) {}
 
-Bullet::Bullet( int row, int col ) : Enemy( Bullet::Symbol, row, col, Bullet::HP, Bullet::Dmg, Bullet::FF ) {}
+Bullet::Bullet( int row, int col ) : Enemy( Bullet::Symbol, row, col, Bullet::HP, Bullet::Dmg, Bullet::FF, Bullet::Points ) {}
 
 Bullet::Bullet( Bullet const & obj ) : Enemy() { *this = obj; }
 
@@ -36,10 +36,8 @@ void	Bullet::take_damage(int dmg) {
 
 void	Bullet::collide( Enemy * rhs ) {
 	if (this->_col == rhs->_col && (this->_row == rhs->_row || this->_row-1 == rhs->_row)) {
-		if (this->_ff || rhs->getFF()) {
-			this->take_damage(rhs->getDmg());
-			rhs->take_damage(this->getDmg());
-		}
+		this->take_damage(0);
+		rhs->take_damage(this->getDmg());
 	}
 }
 

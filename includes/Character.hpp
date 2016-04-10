@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 13:11:03 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 10:12:12 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 12:21:41 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ public:
 	void	draw( void ) const;
 	bool	take_damage(int damage);
 	int		getHP( void );
-
-	static int const	MaxHP = 50;
+	static int const	MaxHP = 5;
 
 private:
 	Character(void);

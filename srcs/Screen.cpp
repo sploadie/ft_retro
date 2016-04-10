@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Screen.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 17:50:04 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 15:41:05 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 13:23:42 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <locale.h>
 #include "Screen.hpp"
 
 Screen::Screen(void)
 {
+	setlocale(LC_ALL,"");
 	// Initialisation
 	initscr();
 	// Clear screen
@@ -78,6 +80,14 @@ void		Screen::hello()
 	attron(COLOR_PAIR(2));
 	attron(A_BOLD);
 	printw("Welcome to our ft_retro game !");
+	mvaddstr(30, 38, "\xE2\x81\x82");
+	mvaddstr(30, 40, "\xE2\x98\xAF");
+	mvaddstr(30, 42, "\xE2\x98\x83");
+	mvaddstr(30, 44, "\xE2\x98\x81");
+	mvaddstr(30, 46, "\xE2\x98\x85");
+	mvaddstr(30, 48, "\xE2\x98\x86");
+	mvaddstr(30, 50, "\xe2\x9c\x93");
+	mvaddstr(30, 52, "\xe2\x82\xac");
 	attroff(A_BOLD);
 	move(15, 30);
 	attron(COLOR_PAIR(4));

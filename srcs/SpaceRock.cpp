@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   SpaceRock.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 09:26:49 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 14:09:54 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SpaceRock.hpp"
 
-SpaceRock::SpaceRock( void ) : Enemy(SpaceRock::Symbol, 0, 0, SpaceRock::HP, SpaceRock::Dmg, SpaceRock::FF) {}
+SpaceRock::SpaceRock( void ) : Enemy(SpaceRock::Symbol, 0, 0, SpaceRock::HP, SpaceRock::Dmg, SpaceRock::FF, SpaceRock::Points) {}
 
-SpaceRock::SpaceRock( int row, int col ) : Enemy( SpaceRock::Symbol, row, col, SpaceRock::HP, SpaceRock::Dmg, SpaceRock::FF ) {}
+SpaceRock::SpaceRock( int row, int col ) : Enemy( SpaceRock::Symbol, row, col, SpaceRock::HP, SpaceRock::Dmg, SpaceRock::FF, SpaceRock::Points ) {}
 
 SpaceRock::SpaceRock( SpaceRock const & obj ) : Enemy() { *this = obj; }
 

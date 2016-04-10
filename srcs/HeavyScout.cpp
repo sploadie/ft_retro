@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   HeavyScout.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 10:25:56 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 14:09:59 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "HeavyScout.hpp"
 
-HeavyScout::HeavyScout( void ) : Enemy(HeavyScout::Symbol, 0, 0, HeavyScout::HP, HeavyScout::Dmg, HeavyScout::FF) {}
+HeavyScout::HeavyScout( void ) : Enemy(HeavyScout::Symbol, 0, 0, HeavyScout::HP, HeavyScout::Dmg, HeavyScout::FF, HeavyScout::Points) {}
 
-HeavyScout::HeavyScout( int row, int col ) : Enemy( HeavyScout::Symbol, row, col, HeavyScout::HP, HeavyScout::Dmg, HeavyScout::FF ) {}
+HeavyScout::HeavyScout( int row, int col ) : Enemy( HeavyScout::Symbol, row, col, HeavyScout::HP, HeavyScout::Dmg, HeavyScout::FF, HeavyScout::Points ) {}
 
 HeavyScout::HeavyScout( HeavyScout const & obj ) : Enemy() { *this = obj; }
 

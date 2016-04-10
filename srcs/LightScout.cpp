@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   LightScout.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:31:09 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 14:30:09 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "LightScout.hpp"
 
-LightScout::LightScout( void ) : Enemy(LightScout::Symbol, 0, 0, LightScout::HP, LightScout::Dmg, LightScout::FF) {}
+LightScout::LightScout( void ) : Enemy(LightScout::Symbol, 0, 0, LightScout::HP, LightScout::Dmg, LightScout::FF, LightScout::Points) {}
 
-LightScout::LightScout( int row, int col ) : Enemy( LightScout::Symbol, row, col, LightScout::HP, LightScout::Dmg, LightScout::FF ) {}
+LightScout::LightScout( int row, int col ) : Enemy( LightScout::Symbol, row, col, LightScout::HP, LightScout::Dmg, LightScout::FF, LightScout::Points ) {}
 
 LightScout::LightScout( LightScout const & obj ) : Enemy() { *this = obj; }
 

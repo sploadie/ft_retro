@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 13:59:57 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 14:28:55 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #include "Fighter.hpp"
 #include "Runner.hpp"
 #include "Squad.hpp"
+
+extern int		g_score;
 
 static void		print_data(int row, int col, int hp, int frame_count, int loop_remaining_time)
 {
@@ -51,9 +53,9 @@ static void		print_data(int row, int col, int hp, int frame_count, int loop_rema
 	move(LINES-1, (COLS/2)-5);
 	attron(COLOR_PAIR(3));
 	printw("Health = %d", hp);
-	move(LINES-1, COLS-10);
+	move(LINES-1, COLS-12);
 	attron(COLOR_PAIR(2));
-	printw("Score = 0");
+	printw("Score = %d", g_score);
 	attroff(A_BOLD);
 	attroff(COLOR_PAIR(2));
 	// Display frames
@@ -201,6 +203,7 @@ void resizeHandler(int sig)
 
 int				main( void )
 {
+
  	// Start ncurses
  	Screen 		scr;
  	// Handle Screen Size

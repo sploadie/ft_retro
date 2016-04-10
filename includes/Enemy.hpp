@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 10:49:58 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 14:08:01 by sraccah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Enemy : public Entity {
 
 public:
 
-	Enemy( char symbol, int row, int col, int hp, int dmg, bool _ff );
+	Enemy( char symbol, int row, int col, int hp, int dmg, bool ff, int points );
 	Enemy( Enemy const & obj );
 
 	virtual ~Enemy( void );
@@ -38,14 +38,16 @@ public:
 	virtual void	handle_oob( void );
 	virtual void	spawn( int frame, Character * rhs, Squad * squad );
 	virtual void	move( int frame, Character * rhs ) = 0;
-	int		getHP( void );
-	int		getDmg( void );
-	bool	getFF( void );
+	int				getHP( void ) const;
+	int				getDmg( void ) const;
+	bool			getFF( void ) const;
+	int 			getPoints( void ) const;
 
 protected:
 	int		_hp;
 	int		_dmg;
 	bool	_ff;
+	int 	_points;
 
 	Enemy( void );
 
