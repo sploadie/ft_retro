@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:23:12 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:38:08 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ Bullet & Bullet::operator=( Bullet const & rhs ) {
 
 Bullet * Bullet::clone(void) const {
 	return new Bullet(*this);
+}
+
+void	Bullet::take_damage(int dmg) {
+	(void)dmg;
+	this->_hp = 0;
+}
+
+void	Bullet::collide( Enemy * rhs ) {
+	if (this->_col == rhs->_col && (this->_row == rhs->_row || this->_row-1 == rhs->_row)) {
+		if (this->_ff || rhs->getFF()) {
+			this->take_damage(rhs->getDmg());
+			rhs->take_damage(this->getDmg());
+		}
+	}
 }
 
 void	Bullet::hit_player( Character * rhs ) { (void)rhs; }

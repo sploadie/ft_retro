@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 18:13:21 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:08:58 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:15:37 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void Squad::collisions( Character * player ) {
 		for (j=i+1;j<this->_count;j++) {
 			this->_enemies[i]->collide( this->_enemies[j] );
 		}
+		this->_enemies[i]->handle_oob();
 	}
 	for (i=0;i<this->_count;i++) {
 		while (i < this->_count && this->_enemies[i]->getHP() == 0) { this->deleteUnit(i); }

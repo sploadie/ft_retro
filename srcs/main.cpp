@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 19:37:31 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:38:46 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,13 @@ static void		game_loop(Character & player, int ch)
  		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
  		loop_start_time = clock();
  		// Gen Enemies
- 		for (i=0;i<COLS;i++) {
- 			if (rand() % (COLS/2) == 0) {
- 				squad.push(new SpaceRock(0, i));
- 			}
+ 		if (42) {
+ 		// if (frame_count % 12 == 1) {
+	 		for (i=0;i<COLS;i++) {
+	 			if (rand() % (COLS/2) == 0) {
+	 				squad.push(new SpaceRock(0, i));
+	 			}
+			}
 		}
  		// Read Input
  		ch = getch();

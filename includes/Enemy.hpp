@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:09:26 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:37:47 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ public:
 	virtual void	take_damage(int dmg);
 	virtual void	collide( Enemy * rhs );
 	virtual void	hit_player( Character * rhs );
+	virtual void	handle_oob( void );
 	virtual void	move( int frame, Character * rhs ) = 0;
 	int		getHP( void );
+	int		getDmg( void );
+	bool	getFF( void );
 
 protected:
 	int		_hp;

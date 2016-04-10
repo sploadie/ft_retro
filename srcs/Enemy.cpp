@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:01:07 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:37:35 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,14 @@ void	Enemy::hit_player( Character * rhs ) {
 		this->_hp = 0;
 		rhs->take_damage(this->_dmg);
 	}
-	// Handle Out of Bounds
-	if (this->_col < 0 || this->_col > COLS-1 || this->_row < 0 || this->_row > LINES-3) { this->_hp = 0; }
 }
 
-int	Enemy::getHP( void ) { return this->_hp; }
+void	Enemy::handle_oob( void ) {
+	if (this->_col < 0 || this->_col > COLS-1 || this->_row < 0 || this->_row > LINES-3) {
+		this->_hp = 0;
+	}
+}
+
+int		Enemy::getHP( void )  { return this->_hp; }
+int		Enemy::getDmg( void ) { return this->_dmg; }
+bool	Enemy::getFF( void )  { return this->_ff; }

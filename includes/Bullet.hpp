@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:19:06 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:34:11 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
 
 	Bullet * clone(void) const;
 
+	void	take_damage(int dmg);
+	void	collide( Enemy * rhs );
 	void	hit_player( Character * rhs );
 	void	move( int frame, Character * rhs );
 

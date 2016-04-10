@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:04:54 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:22:57 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ public:
 	SpaceRock * clone(void) const;
 
 	void	move( int frame, Character * rhs );
+	void	collide( Enemy * rhs );
+	void	hit_player( Character * rhs );
 
 	static char const Symbol = '@';
 	static int  const HP = 1;
-	static int  const Dmg = 1;
+	static int  const Dmg = 0;
 	static bool const FF = false;
 
 private:

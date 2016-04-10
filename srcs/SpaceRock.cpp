@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:12:14 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 09:26:49 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,23 @@ SpaceRock & SpaceRock::operator=( SpaceRock const & rhs ) {
 SpaceRock * SpaceRock::clone(void) const {
 	return new SpaceRock(*this);
 }
+
+void	SpaceRock::collide( Enemy * rhs ) {
+	if (this->_col == rhs->_col && this->_row == rhs->_row) {
+		if (rhs->getHP() != 0) {
+			rhs->take_damage(0);
+			this->_hp = 0;
+		}
+	}
+}
+
+void	SpaceRock::hit_player( Character * rhs ) {
+	if (this->_col == rhs->_col && this->_row == rhs->_row) {
+		this->_hp = 0;
+		rhs->take_damage(1);
+	}
+}
+
 
 void		SpaceRock::move( int frame, Character * rhs ) {
 	(void)rhs;
