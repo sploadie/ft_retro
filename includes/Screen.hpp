@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 17:49:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 16:07:07 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:28:08 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Screen
 		// int		getWidth();
 		// void	setWidth(int width);
 
-		static int const	Width  = 135;
+		static int const	Width  = 136;
 		static int const	Height = 75;
 
 	private:

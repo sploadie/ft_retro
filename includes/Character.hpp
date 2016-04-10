@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 13:11:03 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 17:40:42 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:12:12 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ public:
 	Character& operator=(Character const & rhs);
 	~Character(void);
 
+	void	draw( void ) const;
 	bool	take_damage(int damage);
 	int		getHP( void );
 

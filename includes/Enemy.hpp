@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 09:37:47 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:49:58 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "Entity.hpp"
 # include "Character.hpp"
+# include "Squad.hpp"
+
+class Squad;
 
 class Enemy : public Entity {
 
@@ -33,6 +36,7 @@ public:
 	virtual void	collide( Enemy * rhs );
 	virtual void	hit_player( Character * rhs );
 	virtual void	handle_oob( void );
+	virtual void	spawn( int frame, Character * rhs, Squad * squad );
 	virtual void	move( int frame, Character * rhs ) = 0;
 	int		getHP( void );
 	int		getDmg( void );

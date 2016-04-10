@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 15:13:59 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 18:48:56 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:11:44 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ public:
 
 	Entity & operator=( Entity const & rhs );
 
-	void		draw(void) const;
-	char 		getSymbol() const;
-	int &		refRow();
-	int &		refCol();
+	virtual void	draw() const;
+	char 			getSymbol() const;
+	int &			refRow();
+	int &			refCol();
 
 	char 		_symbol;
 	int			_row;

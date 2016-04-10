@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 18:13:21 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 09:15:37 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:49:36 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,3 +92,6 @@ void Squad::move( int frames, Character * player ) {
 	for (int i=0;i<this->_count;i++) { this->_enemies[i]->move(frames, player); }
 }
 
+void Squad::spawn( int frames, Character * player ) {
+	for (int i=0;i<this->_count;i++) { this->_enemies[i]->spawn(frames, player, this); }
+}

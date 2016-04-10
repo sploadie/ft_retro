@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 13:10:52 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/09 17:41:04 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:16:26 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ Character::~Character(void)
 	printw("Character deleted...");
 	attroff(COLOR_PAIR(3));
 	return ;
+}
+
+void		Character::draw(void) const {
+	attron(COLOR_PAIR(4));
+	this->Entity::draw();
+	attroff(COLOR_PAIR(4));
 }
 
 bool	Character::take_damage(int damage) {

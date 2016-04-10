@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 09:37:35 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:52:01 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	Enemy::handle_oob( void ) {
 		this->_hp = 0;
 	}
 }
+
+void	Enemy::spawn( int frame, Character * rhs, Squad * squad ) { (void)frame; (void)rhs; (void)squad; }
 
 int		Enemy::getHP( void )  { return this->_hp; }
 int		Enemy::getDmg( void ) { return this->_dmg; }

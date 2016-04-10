@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 17:07:25 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/09 19:06:52 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 10:49:44 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <cstddef>
 # include "Enemy.hpp"
 # include "Character.hpp"
+
+class Enemy;
 
 class Squad {
 
@@ -36,6 +38,7 @@ public:
 	void draw( void ) const;
 	void move( int frames, Character * player );
 	void collisions( Character * player );
+	void spawn( int frames, Character * player );
 
 private:
 	int					_count;
