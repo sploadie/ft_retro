@@ -6,21 +6,23 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 11:02:23 by asmets            #+#    #+#             */
-/*   Updated: 2016/04/10 14:37:31 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 17:57:27 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Runner.hpp"
 
 Runner::Runner(void): Enemy(Runner::Symbol, 0, 0, Runner::HP, Runner::Dmg, Runner::FF, Runner::Points ) {
+	Runner::_Count++;
 	this->_direction = rand() % 2 ? 1 : -1;
 }
 
 Runner::Runner( int row, int col ) : Enemy( Runner::Symbol, row, col, Runner::HP, Runner::Dmg, Runner::FF, Runner::Points ) {
+	Runner::_Count++;
 	this->_direction = rand() % 2 ? 1 : -1;
 }
 
-Runner::Runner( Runner const & obj ) : Enemy() { *this = obj;}
+Runner::Runner( Runner const & obj ) : Enemy() { *this = obj; Runner::_Count++; }
 
 Runner::~Runner( void ) {
 }
@@ -44,3 +46,7 @@ void		Runner::move( int frame, Character * rhs ) {
 		this->_col += this->_direction * 2;
 	}
 }
+
+int	Runner::getCount( void ) { return Runner::_Count; };
+
+int	Runner::_Count = 0;

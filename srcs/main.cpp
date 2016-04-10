@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 15:40:44 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 17:42:47 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ static void		game_loop(Character & player, int ch)
 	 				squad.push(new Runner(0, i));
 	 			} else if (rand() % COLS == 0) {
 	 				squad.push(new HeavyScout(0, i));
-	 			} else if (rand() % COLS == 0) {
+	 			} else if (rand() % (COLS * 4) == 0 && Fighter::getCount() < 1 + frame_count/1000) {
 	 				squad.push(new Fighter(0, i));
 	 			}
 			}
@@ -202,7 +202,7 @@ static void		game_loop(Character & player, int ch)
  		} else {
  			alive = false;
  			row = -1;
- 			col = -1;
+ 			col = COLS/2;
  			print_gameover();
  		}
  	}

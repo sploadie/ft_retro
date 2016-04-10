@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 13:27:56 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 17:35:39 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ public:
 
 	Fighter & operator=( Fighter const & rhs );
 
-	Fighter * clone(void) const;
+	Fighter * clone( void ) const;
 
 	void	spawn( int frame, Character * rhs, Squad * squad );
 	void	move( int frame, Character * rhs );
+
+	static int	getCount( void );
 
 	static char const Symbol = 'w';
 	static int  const HP = 2;
@@ -42,6 +44,7 @@ public:
 private:
 	Fighter( void );
 
+	static int	_Count;
 };
 
 #endif

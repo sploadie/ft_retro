@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Screen.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 17:50:04 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 13:23:42 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 17:11:13 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ Screen::Screen(void)
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	init_pair(3, COLOR_BLUE, COLOR_BLACK);
 	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(5, COLOR_BLACK, COLOR_BLACK);
 	attron(COLOR_PAIR(3));
 	attron(A_BOLD);
 	printw("Screen created...\n");

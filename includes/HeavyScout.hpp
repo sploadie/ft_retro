@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HeavyScout.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 14:09:28 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 17:53:24 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ public:
 
 	void	move( int frame, Character * rhs );
 
+	static int	getCount( void );
+
 	static char const Symbol = 'V';
 	static int  const HP = 2;
 	static int  const Dmg = 2;
@@ -40,6 +42,7 @@ public:
 private:
 	HeavyScout( void );
 
+	static int	_Count;
 };
 
 #endif

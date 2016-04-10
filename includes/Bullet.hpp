@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bullet.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 14:29:16 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 16:52:20 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
 
 	Bullet * clone(void) const;
 
+	void	draw(void) const;
 	void	take_damage(int dmg);
 	void	collide( Enemy * rhs );
 	void	hit_player( Character * rhs );

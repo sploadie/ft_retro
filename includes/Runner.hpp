@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/10 13:13:27 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 14:36:02 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 17:53:21 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ public:
 
 	void	move( int frame, Character * rhs );
 
+	static int	getCount( void );
+
 	static char const Symbol = 'Y';
 	static int  const HP = 1;
 	static int  const Dmg = 1;
@@ -39,5 +41,7 @@ public:
 private:
 	Runner( void );
 	int _direction;
+
+	static int	_Count;
 };
  #endif

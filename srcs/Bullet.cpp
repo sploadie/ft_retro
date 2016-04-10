@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bullet.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 14:29:09 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 16:55:09 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ Bullet & Bullet::operator=( Bullet const & rhs ) {
 
 Bullet * Bullet::clone(void) const {
 	return new Bullet(*this);
+}
+
+void	Bullet::draw(void) const {
+	attron(COLOR_PAIR(2));
+	this->Entity::draw();
+	attron(COLOR_PAIR(4));
 }
 
 void	Bullet::take_damage(int dmg) {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   LightScout.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sraccah <sraccah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 14:09:21 by sraccah          ###   ########.fr       */
+/*   Updated: 2016/04/10 17:53:22 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ public:
 
 	void	move( int frame, Character * rhs );
 
+	static int	getCount( void );
+
 	static char const Symbol = 'v';
 	static int  const HP = 1;
 	static int  const Dmg = 1;
@@ -40,6 +42,7 @@ public:
 private:
 	LightScout( void );
 
+	static int	_Count;
 };
 
 #endif
