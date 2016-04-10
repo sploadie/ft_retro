@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 13:10:52 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 10:16:26 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:40:27 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ Character::~Character(void)
 }
 
 void		Character::draw(void) const {
-	attron(COLOR_PAIR(4));
+	// attron(COLOR_PAIR(4));
 	this->Entity::draw();
-	attroff(COLOR_PAIR(4));
+	// attroff(COLOR_PAIR(4));
 }
 
 bool	Character::take_damage(int damage) {

@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/09 14:52:31 by tgauvrit          #+#    #+#             */
-/*   Updated: 2016/04/10 15:10:33 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:36:54 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ Star * Star::clone(void) const {
 }
 
 void		Star::draw(void) const {
-	this->Entity::draw();
-	// mvaddstr(this->_row, this->_col, "\xE2\x98\x86");
+	// this->Entity::draw();
+	mvaddstr(this->_row, this->_col, "\xE2\x98\x86");
+	// mvaddstr(this->_row, this->_col, "\xE2\x94\x83");
 }
 
 void		Star::move( int frame, Character * rhs ) {

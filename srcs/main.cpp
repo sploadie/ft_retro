@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/06 20:50:12 by sraccah           #+#    #+#             */
-/*   Updated: 2016/04/10 15:05:17 by tgauvrit         ###   ########.fr       */
+/*   Updated: 2016/04/10 15:40:44 by tgauvrit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ static void		game_loop(Character & player, int ch)
  	while (42)
  	{
  		frame_count++;
- 		loop_remaining_time = 40000 - clockToUseconds(clock() - loop_start_time);
+ 		// loop_remaining_time = 40000 - clockToUseconds(clock() - loop_start_time);
+ 		loop_remaining_time = 20000 - clockToUseconds(clock() - loop_start_time);
  		if (loop_remaining_time > 0) { usleep(loop_remaining_time); }
  		loop_start_time = clock();
  		// Gen Background
@@ -193,7 +194,9 @@ static void		game_loop(Character & player, int ch)
  		squad.spawn(frame_count, &player);
  		squad.move(frame_count, &player);
  		squad.collisions(&player);
+		attron(COLOR_PAIR(4));
  		squad.draw();
+		attroff(COLOR_PAIR(4));
  		if (player.getHP() > 0) {
  			player.draw();
  		} else {
