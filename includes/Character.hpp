@@ -26,7 +26,7 @@ public:
 	void	draw( void ) const;
 	bool	take_damage(int damage);
 	int		getHP( void );
-	static int const	MaxHP = 5;
+	static int MaxHP;
 
 private:
 	Character(void);

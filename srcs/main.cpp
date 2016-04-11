@@ -55,8 +55,8 @@ namespace 		Bosses {
 		for (j=0;j<3;j++) {
 			squad.push(new Boss(0, i++, 'X', 999, 5, 2, 60));
 		}
-		for (j=0;j<3;j++) {
-			squad.push(new Boss(0, i++, 'O', 5, 5, 2, 60));
+		for (j=0;j<4;j++) {
+			squad.push(new Boss(0, i++, 'O', 1, 2, 2, 60));
 		}
 		for (j=0;i<COLS;j++) {
 			squad.push(new Boss(0, i++, 'X', 999, 5, 2, 60));
@@ -64,43 +64,43 @@ namespace 		Bosses {
 		// 1 - 3
 		for (l=1;l<4;l++) {
 			i = 0;
-			for (j=0;j<3;j++) {
+			for (j=0;j<4;j++) {
 				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
 			}
 			for (k=0;k<20;k++) {
-				for (j=0;j<3;j++) {
-					squad.push(new Boss(l, i++, 'O', 5, 5, 2, 60));
+				for (j=0;j<4;j++) {
+					squad.push(new Boss(l, i++, 'O', 1, 2, 2, 60));
 				}
 				i+=2;
 			}
-			squad.push(new Boss(l, i++, 'O', 5, 5, 2, 60));
+			squad.push(new Boss(l, i++, 'O', 1, 2, 2, 60));
 			for (j=0;i<COLS;j++) {
 				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
 			}
 		}
 		// 4 - 6
-		for (l=4;l<7;l++) {
+		for (l=4;l<8;l++) {
 			i = 0;
-			for (j=0;j<3;j++) {
+			for (j=0;j<4;j++) {
 				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
 			}
 			for (k=0;k<20;k++) {
-				i+=4;
-				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
+				i+=5;
+				squad.push(new Boss(l, i++, 'O', 1, 2, 2, 60));
 			}
 			i++;
 			for (j=0;i<COLS;j++) {
 				squad.push(new Boss(l, i++, 'X', 999, 5, 2, 60));
 			}
 		}
-		// 7
+		// 8
 		i = 0;
-		for (j=0;j<103;j++) {
-			squad.push(new Boss(7, i++, 'X', 999, 5, 2, 60));
+		for (j=0;j<124;j++) {
+			squad.push(new Boss(8, i++, 'X', 999, 5, 2, 60));
 		}
 		i++;
 		for (j=0;i<COLS;j++) {
-			squad.push(new Boss(7, i++, 'X', 999, 5, 2, 60));
+			squad.push(new Boss(8, i++, 'X', 999, 5, 2, 60));
 		}
 	}
 }
@@ -257,6 +257,11 @@ static void		game_loop(Character & player, int ch)
 		} else if (boss_present && squad.getCount() == 0) {
 			boss_present = false;
 			boss_count++;
+			if (Character::MaxHP == 5) {
+				player._symbol = 'A';
+			}
+			Character::MaxHP += 5;
+			player.take_damage(-(Character::MaxHP));
 		}
  		// Read Input
  		ch = getch();

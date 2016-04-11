@@ -60,3 +60,5 @@ bool	Character::take_damage(int damage) {
 }
 
 int	Character::getHP( void ) { return this->_hp; }
+
+int Character::MaxHP = 5;
